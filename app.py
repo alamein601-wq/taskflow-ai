@@ -72,4 +72,13 @@ def load_plan():
         return jsonify({'error': str(e)}), 500
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=5000) 
+    app.run(debug=True, host='0.0.0.0', port=5000) # বিকাশ পেমেন্ট রুটসমূহ
+@app.route('/pay', methods=['POST'])
+def create_payment():
+    # পেমেন্ট রিকোয়েস্ট তৈরি করার লজিক এখানে থাকবে
+    return jsonify({"success": True, "message": "bKash payment integration"})
+
+@app.route('/callback', methods=['GET', 'POST'])
+def bkash_callback():
+    # পেমেন্ট সফল হওয়ার পর কমিশন কেটে রাখার লজিক এখানে থাকবে
+    return "পেমেন্ট সফল হয়েছে!"
