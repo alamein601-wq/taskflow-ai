@@ -15,8 +15,6 @@ scheduler = TaskScheduler()
 def index():
     return render_template('login.html')
 
-    return render_template('index.html')
-
 @app.route('/api/plan', methods=['POST'])
 def create_plan():
     """API endpoint to create a daily plan from natural language input"""
