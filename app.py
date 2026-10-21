@@ -13,7 +13,8 @@ scheduler = TaskScheduler()
 
 @app.route('/')
 def index():
-    """Main page for TaskFlow AI"""
+    return render_template('login.html')
+
     return render_template('index.html')
 
 @app.route('/api/plan', methods=['POST'])
