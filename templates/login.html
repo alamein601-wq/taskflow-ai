@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Taskflow AI - Login</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Country Code Picker CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/css/intlTelInput.css"/>
+</head>
+<body class="bg-slate-900 text-white min-h-screen flex items-center justify-center p-4">
+
+  <div class="w-full max-w-md bg-slate-800 rounded-3xl shadow-2xl overflow-hidden border border-slate-700 p-6">
+    
+    <!-- Header -->
+    <div class="text-center my-4">
+      <div class="w-16 h-16 bg-blue-600/20 text-blue-400 rounded-2xl flex items-center justify-center mx-auto mb-3 border border-blue-500/30">
+        <i class="fa-solid fa-bolt text-2xl"></i>
+      </div>
+      <h1 class="text-2xl font-bold">Taskflow AI</h1>
+      <p class="text-slate-400 text-sm mt-1">ফোন নম্বর দিয়ে দ্রুত প্রবেশ করুন</p>
+    </div>
+
+    <!-- Phone Step -->
+    <div id="phone-step" class="space-y-4 my-6">
+      <label class="block text-xs font-semibold text-slate-400 uppercase">ফোন নম্বর</label>
+      <div class="w-full">
+        <input id="phone-input" type="tel" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-blue-500">
+      </div>
+      <button onclick="goToOTP()" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-semibold py-3 rounded-xl transition duration-200 shadow-lg shadow-blue-600/30">
+        পরবর্তী ধাপ
+      </button>
+    </div>
+
+    <!-- OTP Step (Initially Hidden) -->
+    <div id="otp-step" class="space-y-4 my-6 hidden">
+      <p class="text-xs text-slate-400 text-center">আপনার নম্বরে একটি কোড পাঠানো হয়েছে</p>
+      
+      <!-- OTP Inputs -->
+      <div class="flex justify-between gap-2">
+        <input type="text" maxlength="1" class="otp-box w-12 h-12 text-center text-xl font-bold bg-slate-900 border border-slate-700 rounded-xl focus:border-blue-500 focus:outline-none" />
+        <input type="text" maxlength="1" class="otp-box w-12 h-12 text-center text-xl font-bold bg-slate-900 border border-slate-700 rounded-xl focus:border-blue-500 focus:outline-none" />
+        <input type="text" maxlength="1" class="otp-box w-12 h-12 text-center text-xl font-bold bg-slate-900 border border-slate-700 rounded-xl focus:border-blue-500 focus:outline-none" />
+        <input type="text" maxlength="1" class="otp-box w-12 h-12 text-center text-xl font-bold bg-slate-900 border border-slate-700 rounded-xl focus:border-blue-500 focus:outline-none" />
+      </div>
+
+      <button onclick="verifySuccess()" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-semibold py-3 rounded-xl transition duration-200">
+        লগইন করুন
+      </button>
+    </div>
+
+  </div>
+
+  <!-- Country Code JS & Logic -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/intlTelInput.min.js"></script>
+  <script>
+    const phoneInputField = document.querySelector("#phone-input");
+    const phoneInput = window.intlTelInput(phoneInputField, {
+      initialCountry: "mv",
+      preferredCountries: ["mv", "bd", "us", "ae"],
+      utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/utils.js",
+    });
+
+    function goToOTP() {
+      document.getElementById("phone-step").classList.add("hidden");
+      document.getElementById("otp-step").classList.remove("hidden");
+    }
+
+    function verifySuccess() {
+      alert("লগইন সফল হয়েছে!");
+      window.location.href = "/dashboard";
+    }
+  </script>
+</body>
+</html>
